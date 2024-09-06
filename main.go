@@ -8,7 +8,7 @@ import (
 )
 
 func hello(w http.ResponseWriter, req *http.Request) {
-	io.WriteString(w, "Hello world")
+	io.WriteString(w, "Hello world v1.0.2")
 }
 
 func main() {
@@ -17,5 +17,3 @@ func main() {
 
 	http.ListenAndServe(":8080", mux)
 }
-
-// sdsdd

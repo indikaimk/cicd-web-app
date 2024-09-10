@@ -27,7 +27,7 @@ func hello(w http.ResponseWriter, req *http.Request) {
 }
 
 func version(w http.ResponseWriter, req *http.Request) {
-	io.WriteString(w, "v1.0.17")
+	io.WriteString(w, "v1.0.19")
 }
 
 func main() {

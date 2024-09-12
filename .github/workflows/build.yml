@@ -52,12 +52,15 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          # images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           # tags: |
           #   type=schedule
           #   type=ref,event=branch
           #   type=ref,event=tag
           #   type=ref,event=pr
+          tags: |
+            type=sha,enable=true,priority=100,prefix=sha-,suffix=,format=short
 
       - name: Build and push container image
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4

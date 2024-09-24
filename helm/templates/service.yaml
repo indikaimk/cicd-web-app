@@ -4,7 +4,7 @@ metadata:
   name: {{ include "helm.fullname" . }}
   labels:
     {{- include "helm.labels" . | nindent 4 }}
-  namespace: "web-app"
+  namespace: {{ .Values.namespace }}
 spec:
   type: {{ .Values.service.type }}
   ports:

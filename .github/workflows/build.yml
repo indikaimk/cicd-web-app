@@ -55,11 +55,17 @@ jobs:
           tags: |
             type=sha,enable=true,priority=100,prefix=sha-,suffix=,format=short
 
-      - name: Build and push container image
-        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          # tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
-          labels: ${{ steps.meta.outputs.labels }}
+      # - name: Build and push container image
+      #   uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+      #   with:
+      #     context: .
+      #     push: true
+      #     tags: ${{ steps.meta.outputs.tags }}
+      #     # tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+      #     labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Push helm chart to repo
+        run: |
+          helm package ./helm --version ${{ steps.meta.outputs.tags }}
+          helm registry login ghcr.io --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
+          helm push helm-${{ steps.meta.outputs.tags }}.tgz oci://c8n.io/indikaimk/web-app-${{ steps.meta.outputs.tags }}

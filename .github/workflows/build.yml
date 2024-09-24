@@ -74,4 +74,4 @@ jobs:
         run: |
           helm package ./helm --app-version $(git rev-parse --short ${{ github.sha }})
           helm registry login ghcr.io --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
-          helm push helm-0.1.0.tgz oci://c8n.io/indikaimk/web-app
+          helm push helm-0.1.0.tgz oci://${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:helm

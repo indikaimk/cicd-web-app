@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [opened, reopened]
     branches:
-      - 'main'
+      - 'main-1'
 
 jobs:
   run_unit_tests:

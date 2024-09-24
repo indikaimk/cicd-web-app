@@ -72,7 +72,6 @@ jobs:
 
       - name: Push helm chart to repo
         run: |
-          commit_sha=$(git rev-parse --short ${{ github.sha }})
-          helm package ./helm --version $commit_sha
+          helm package ./helm --app-version $(git rev-parse --short ${{ github.sha }})
           helm registry login ghcr.io --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
-          helm push helm-$commit_sha.tgz oci://c8n.io/indikaimk/web-app-$commit_sha
+          helm push helm.tgz oci://c8n.io/indikaimk/web-app

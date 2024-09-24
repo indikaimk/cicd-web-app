@@ -64,8 +64,15 @@ jobs:
       #     # tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
       #     labels: ${{ steps.meta.outputs.labels }}
 
+      # - name: Push helm chart to repo
+      #   run: |
+      #     calculatedSha=$(git rev-parse --short ${{ github.sha }})
+      #     echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
+
+
       - name: Push helm chart to repo
         run: |
-          helm package ./helm --version ${{ steps.meta.outputs.tags }}
+          commit_sha=$(git rev-parse --short ${{ github.sha }})
+          helm package ./helm --version $commit_sha
           helm registry login ghcr.io --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
-          helm push helm-${{ steps.meta.outputs.tags }}.tgz oci://c8n.io/indikaimk/web-app-${{ steps.meta.outputs.tags }}
+          helm push helm-$commit_sha.tgz oci://c8n.io/indikaimk/web-app-$commit_sha

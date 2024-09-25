@@ -70,8 +70,8 @@ jobs:
       #     echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
 
 
-      - name: Push helm chart to repo
-        run: |
-          helm package ./helm --app-version $(git rev-parse --short ${{ github.sha }})
-          helm registry login ghcr.io --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
-          helm push helm-0.1.0.tgz oci://${{ env.REGISTRY }}/cicd-web-app/helm
+      # - name: Push helm chart to repo
+      #   run: |
+      #     helm package ./helm --app-version $(git rev-parse --short ${{ github.sha }})
+      #     helm registry login ghcr.io --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
+      #     helm push helm-0.1.0.tgz oci://${{ env.REGISTRY }}/cicd-web-app/helm

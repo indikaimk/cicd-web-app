@@ -67,6 +67,8 @@ jobs:
       - name: Update image tag and push changes to git
         run: |
           sed -i.bak "s/tag:.*/tag: $(git rev-parse --short ${{ github.sha }})/" ./helm/values.yaml
+          git -C ./cicd-helm config --global user.name "${{ github.actor }}"
+          git -C ./cicd-helm config --global user.email "indikaimk@gmail.com
           git add .
           git commit -m "bump image version"
           git push -u orgin main

@@ -77,13 +77,14 @@ jobs:
           git -C ./cicd-helm config --global user.email "indikaimk@gmail.com"
           git -C ./cicd-helm add .
           git -C ./cicd-helm commit -m "bump image version"
-          git -C ./cicd-helm remote set-url --push origin git://indikaimk:$GITHUB_TOKEN@github.com/indikaimk/cicd-helm.git
           git -C ./cicd-helm push
 
       # - name: Push helm chart to repo
       #   run: |
       #     calculatedSha=$(git rev-parse --short ${{ github.sha }})
       #     echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
+      #     git -C ./cicd-helm remote set-url --push origin git://indikaimk:$GITHUB_TOKEN@github.com/indikaimk/cicd-helm.git
+
 
 
       # - name: Push helm chart to repo

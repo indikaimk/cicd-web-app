@@ -71,4 +71,4 @@ jobs:
           git config --global user.email "indikaimk@gmail.com
           git add .
           git commit -m "bump image version"
-          git push -u orgin main
+          git push

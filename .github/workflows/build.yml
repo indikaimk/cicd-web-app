@@ -66,9 +66,9 @@ jobs:
 
       - name: Update image tag and push changes to git
         run: |
-          sed -i.bak "s/tag:.*$/tag: $(git rev-parse --short ${{ github.sha }})/" ./helm/values.yaml
+          sed -i.bak "s/tag:.*$/tag: \"sha-$(git rev-parse --short ${{ github.sha }})\"/" ./helm/values.yaml
           git config --global user.name "${{ github.actor }}"
-          git config --global user.email "indikaimk@gmail.com"
+          git config --global user.email "dev@clodqubes.com"
           git add .
           git commit -m "bump image version"
           git push

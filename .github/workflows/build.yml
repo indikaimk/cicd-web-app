@@ -77,8 +77,9 @@ jobs:
           git -C ./cicd-helm config --global user.email "indikaimk@gmail.com"
           git -C ./cicd-helm add .
           git -C ./cicd-helm commit -m "bump image version"
-          git remote set-url --push origin https://"${{ github.actor }}":{{ $GITHUB_TOKEN }}@github.com/your/repo
+          git remote set-url --push origin https://"${{ github.actor }}":$GITHUB_TOKEN@github.com/your/repo
           git -C ./cicd-helm push
+          
 
       # - name: Push helm chart to repo
       #   run: |

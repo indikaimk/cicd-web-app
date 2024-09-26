@@ -68,7 +68,7 @@ jobs:
         run: |
           sed -i.bak "s/tag:.*$/tag: $(git rev-parse --short ${{ github.sha }})/" ./helm/values.yaml
           git config --global user.name "${{ github.actor }}"
-          git config --global user.email "indikaimk@gmail.com
+          git config --global user.email "indikaimk@gmail.com"
           git add .
           git commit -m "bump image version"
           git push

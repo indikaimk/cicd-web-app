@@ -80,7 +80,6 @@ jobs:
           git -C ./cicd-helm remote set-url --push origin https://indikaimk:$GITHUB_TOKEN@github.com/indikaimk/cicd-helm
           git -C ./cicd-helm push
 
-
       # - name: Push helm chart to repo
       #   run: |
       #     calculatedSha=$(git rev-parse --short ${{ github.sha }})

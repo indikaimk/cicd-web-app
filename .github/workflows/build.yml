@@ -75,7 +75,7 @@ jobs:
           sed -i.bak "s/tag:.*/tag: $(git rev-parse --short ${{ github.sha }})/" ./cicd-helm/webapp/values.yaml
           git -C ./cicd-helm config --global user.name "${{ github.actor }}"
           git -C ./cicd-helm config --global user.email "username@example.com"
-          git -C .cicd-helm .
+          git -C ./cicd-helm .
           git -C ./cicd-helm commit -m "bump image version"
           git -C ./cicd-helm push
       # - name: Push helm chart to repo
